@@ -20,9 +20,9 @@ type User struct {
 	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
 
 	// Relationships
-	RefreshToken []RefreshToken `json:"-"`
-	Orders       []Order        `json:"-"`
-	Cart         Cart           `json:"-"`
+	RefreshTokens []RefreshToken `json:"-"`
+	Orders        []Order        `json:"-"`
+	Cart          Cart           `json:"-"`
 }
 
 type UserRole string

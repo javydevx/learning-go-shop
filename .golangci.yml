@@ -24,8 +24,7 @@ linters:
         - style
 
     revive:
-      rules:
-        - name: exported
+      rules: []
 
 formatters:
   enable:

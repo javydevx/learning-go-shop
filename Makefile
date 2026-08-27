@@ -9,6 +9,8 @@ help:
 	@echo "  make format       - Format the code and re-arrange imports"
 	@echo "  make migrate-up   - Apply database migrations"
 	@echo "  make migrate-down - Rollback database migrations"
+	@echo "  make docker-up    - Start Docker containers"
+	@echo "  make docker-down  - Stop Docker containers"
 
 build:
 	go build -o bin/app ./cmd/api
@@ -27,10 +29,10 @@ format:
 	@goimports -w .
 
 migrate-up:
-	migrate -path db/migrations -database "postgresql://postgres:password@localhost:5432/ecommerce_shop?sslmode=disable" up
+	migrate -path db/migrations -database "postgresql://postgres:password@192.168.143.1:5432/ecommerce_shop?sslmode=disable" up
 
 migrate-down:
-	migrate -path db/migrations -database "postgresql://postgres:password@localhost:5432/ecommerce_shop?sslmode=disable" down
+	migrate -path db/migrations -database "postgresql://postgres:password@192.168.143.1:5432/ecommerce_shop?sslmode=disable" down
 
 docker-up:
 	docker-compose -f docker/docker-compose.yml up -d

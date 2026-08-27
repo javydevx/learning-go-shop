@@ -40,13 +40,13 @@ type Product struct {
 }
 
 type ProductImage struct {
-	ID         uint           `json:"id" gorm:"primaryKey"`
-	CategoryID uint           `json:"category_id" gorm:"not null"`
-	URL        string         `json:"url" gorm:"not null"`
-	AltText    string         `json:"alt_text"`
-	IsPrimary  bool           `json:"is_primary" gorm:"default:false"`
-	CreatedAt  time.Time      `json:"created_at"`
-	DeletedAt  gorm.DeletedAt `json:"-" gorm:"index"`
+	ID        uint           `json:"id" gorm:"primaryKey"`
+	ProductID uint           `json:"product_id" gorm:"not null"`
+	URL       string         `json:"url" gorm:"not null"`
+	AltText   string         `json:"alt_text"`
+	IsPrimary bool           `json:"is_primary" gorm:"default:false"`
+	CreatedAt time.Time      `json:"created_at"`
+	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
 
 	// Relationships
 	Product Product `json:"-"`

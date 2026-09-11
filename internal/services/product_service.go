@@ -33,7 +33,7 @@ func (s *ProductService) CreateCategory(req *dto.CreateCategoryRequest) (*dto.Ca
 	}, nil
 }
 
-func (s *ProductService) GetCategory() ([]dto.CategoryResponse, error) {
+func (s *ProductService) GetCategories() ([]dto.CategoryResponse, error) {
 	var categories []models.Category
 	if err := s.db.Where("is_active = ?", true).Find(&categories).Error; err != nil {
 		return nil, err
@@ -165,6 +165,10 @@ func (s *ProductService) UpdateProduct(id uint, req *dto.UpdateProductRequest) (
 	}
 
 	return s.GetProduct(id)
+}
+
+func (s *ProductService) DeleteProduct(id uint) error {
+	return s.db.Delete(&models.Product{}, id).Error
 }
 
 func (s *ProductService) convertToProductResponse(product *models.Product) dto.ProductResponse {

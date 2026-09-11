@@ -15,6 +15,7 @@ import (
 	"github.com/javydevx/learning-go-shop/internal/database"
 	"github.com/javydevx/learning-go-shop/internal/logger"
 	"github.com/javydevx/learning-go-shop/internal/server"
+	"github.com/javydevx/learning-go-shop/internal/services"
 )
 
 func main() {
@@ -42,7 +43,11 @@ func main() {
 	}()
 	gin.SetMode(cfg.Server.GinMode)
 
-	srv := server.New(cfg, db, &log)
+	authService := services.NewAuthService(db, cfg)
+	productService := services.NewProductService(db)
+	userService := services.NewUserService(db)
+
+	srv := server.New(cfg, db, &log, authService, productService, userService)
 
 	router := srv.SetupRoutes()
 

@@ -70,7 +70,7 @@ func NotFoundResponse(c *gin.Context, message string) {
 	ErrorResponse(c, http.StatusNotFound, message, nil)
 }
 
-func InternalServerResponse(c *gin.Context, message string, err error) {
+func InternalServerErrorResponse(c *gin.Context, message string, err error) {
 	ErrorResponse(c, http.StatusInternalServerError, message, err)
 }
 

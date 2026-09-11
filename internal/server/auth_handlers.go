@@ -67,7 +67,7 @@ func (s *Server) logout(c *gin.Context) {
 
 	authService := services.NewAuthService(s.db, s.config)
 	if err := authService.Logout(req.RefreshToken); err != nil {
-		utils.InternalServerResponse(c, "Logout failed", err)
+		utils.InternalServerErrorResponse(c, "Logout failed", err)
 		return
 	}
 
@@ -98,7 +98,7 @@ func (s *Server) updateProfile(c *gin.Context) {
 	userService := services.NewUserService(s.db)
 	profile, err := userService.UpdateProfile(userID, &req)
 	if err != nil {
-		utils.InternalServerResponse(c, "Failed to update profile", err)
+		utils.InternalServerErrorResponse(c, "Failed to update profile", err)
 		return
 	}
 
